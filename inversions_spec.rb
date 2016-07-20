@@ -44,29 +44,47 @@ RSpec.describe Inversions do
       expect(inversions.sort).to eql tstary.sort
       expect(inversions.inversions).to eql 2
     end
-    it 'counts inversions on a 4-item array' do
-      tstary = %w{4 5 3 2}
+    it 'counts inversions on a 10-item reversed array' do
+      tstary = %w{10 9 8 7 6 5 4 3 2 1}
       inversions = Inversions.new(tstary)
       expect(inversions.sort).to eql tstary.sort
-      expect(inversions.inversions).to eql 5
+      expect(inversions.inversions).to eql 45
     end
-    it 'counts inversions on 4-item reversed array' do
-      tstary = %w{5 4 3 2}
+    it 'counts inversions on 11-item reversed array' do
+      tstary = %w{11 10 9 8 7 6 5 4 3 2 1}
       inversions = Inversions.new(tstary)
       inversions.sort
-      expect(inversions.inversions).to eql 6
+      expect(inversions.inversions).to eql 55
     end
-    it 'counts inversions on a six-item reersed array' do
+    it 'counts inversions on 8-item reversed array' do
+      tstary = %w{8 7 6 5 4 3 2 1}
+      inversions = Inversions.new(tstary)
+      inversions.sort
+      expect(inversions.inversions).to eql 28
+    end
+    it 'counts inversions on 9-item reversed array' do
+      tstary = %w{9 8 7 6 5 4 3 2 1}
+      inversions = Inversions.new(tstary)
+      inversions.sort
+      expect(inversions.inversions).to eql 36
+    end
+    it 'counts inversions on a six-item reversed array' do
       tstary = %w{6 5 4 3 2 1}
       inversions = Inversions.new(tstary)
       expect(inversions.sort).to eql tstary.sort
       expect(inversions.inversions).to eql 15
     end
-    it 'counts inversions on a left/right-inversion only array' do
-      tstary = %w{1 3 2 4 6 5}
+    it 'counts inversions on an 8-item reversed array' do
+      tstary = %w{8 7 6 5 4 3 2 1}
       inversions = Inversions.new(tstary)
       expect(inversions.sort).to eql tstary.sort
-      expect(inversions.inversions).to eql 2
+      expect(inversions.inversions).to eql 28
+    end
+    it 'counts inversions on an 8-item left/right-inversion only array' do
+      tstary = %w{2 1 4 3 6 5 8 7}
+      inversions = Inversions.new(tstary)
+      expect(inversions.sort).to eql tstary.sort
+      expect(inversions.inversions).to eql 4
     end
     it 'counts inverstions on a 5-item array' do
       tstary = %w{5 4 3 2 1}
@@ -85,18 +103,19 @@ RSpec.describe Inversions do
       tstary = %w{17 43 55 1 2 99 3 99 3 101 5}
       inversions = Inversions.new(tstary)
       expect(inversions.sort).to eql tstary.sort
+      expect(inversions.inversions).to eql 21
     end
-    it 'counts inversions for a small input file' do
+    xit 'counts inversions for a small input file' do
       tstary = File.open('integerArray.test1').readlines
       inversions = Inversions.new(tstary)
       expect(inversions.sort).to eql tstary.sort
       expect(inversions.inversions).to eql 33
     end
-    xit 'counts inversions for a small file-like data' do
+    it 'counts inversions for a small file-like data' do
       tstary = %w{54044 14108 79294 29649 25260 60660 2995 53777 49689 9083 16122 90436}
       inversions = Inversions.new(tstary)
       expect(inversions.sort).to eql tstary.sort
-      expect(inversions.inversions).to eql 33
+      expect(inversions.inversions).to eql 35
     end
   end
 
