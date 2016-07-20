@@ -1,8 +1,9 @@
 class Inversions
-  def initialize(input_array)
-    @input_array = input_array
+  def initialize(input_array, debug = false)
+    @input_array = input_array.map { |e| e.to_i }
     @inversions = 0
-    # puts "Initializing with array: #{@input_array}"
+    @debug = debug
+    puts "Initializing with array: #{@input_array}"
   end
 
   def sort
@@ -24,15 +25,20 @@ class Inversions
       ary_size = ary.size
       a1 = ary.slice(0..(-1+ary_size/2))
       a2 = ary.slice(ary_size/2..(ary_size-1))
-      # puts "sort) Preparing for merge. a: #{ary_size}; a1: #{a1}; a2: #{a2}"
-      # merge(_sort(a1),_sort(a2))
-      b1 = _sort(a1)
-      puts "b1: #{@inversions}"
-      b2 = _sort(a2)
-      puts "b2: #{@inversions}"
-      b3 = merge(b1,b2)
-      puts "merge: #{@inversions}"
-      return b3
+      if @debug
+        puts "a1/before: #{a1}"
+        b1 = _sort(a1)
+        puts "b1: #{b1}, inversions: #{@inversions}"
+        puts "a2/before: #{a2}"
+        b2 = _sort(a2)
+        puts "b2: #{b2}, inversions: #{@inversions}"
+        puts "b1 - b2: #{b1} - #{b2}"
+        b3 = merge(b1,b2)
+        puts "merge: #{b3}, inversions: #{@inversions}"
+        return b3
+      else
+        merge(_sort(a1),_sort(a2))
+      end
     end
   end
 
